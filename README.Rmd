@@ -1,0 +1,28 @@
+### Introduction
+
+This repo includes my R script for the Getting and Cleaning Data course project offered by Coursera.
+The main tasks carried out by the run_analysis.R script are:
+
+1) Merge 2 datasets on Samsung Galaxy S accelometer and gyroscope measurements, namely the training and the test sets to create one holistic data set.
+2) Extract only the measurements on the mean and standard deviation for each measurement. 
+3) Use descriptive activity names to name the activities in the data set
+4) Appropriately label the data set with descriptive variable names. 
+5) From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+
+### Approach
+
+The approach I have followed to implement the script are:
+
+1) Read the features.txt file and process the dataframe so that I can hold a list of feature names. I am then using that list to automatically label
+   the variables in the new merged datasets
+2) Read all datasets as required and instructed from the ./UCI HAR Dataset folder in my working directory
+3) Bind the columns of x,y and subject train data in order to merge them
+4) Bind the columns of x,y and subject test data in order to merge them
+5) Then create the holistic dataset by binding the rows of the test and train datasets (this creates a dataframe with 10,299 rows and 563 columns)
+6) At this stage the names of the variables pertaining to features are ok, but the Subject and Activity variables are not names. I name them accordingly.
+7) As a next step I am extracting the measurements that pertain to mean and standard deviation only. I'm also converting those to factor types.
+8) I then rename the levels of the Activity factors and change them from 1,2,3... to WALKING, WALKING_UPSTAIRS,etc.
+9) Finally, I create a new tidy_dataset that includes only the average of each of the variables per Subject per Activity. This way the reader
+   can see the measurements first for Subject 1 for each one of the Activities (Walking, Standing,Sitting,etc.) and so on until the 30th subject.
+10) The tidy dataset it then written to a text file called "week3_proj_tidy_dataset" in the ./UCI HAR Dataset folder in my working directory.
